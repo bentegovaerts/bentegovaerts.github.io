@@ -1,0 +1,406 @@
+/* ==========================
+   1. Eigen logo-font
+========================== */
+@font-face {
+  font-family: 'MijnLogoFont';
+  src: url('../fonts/FontLino-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ==========================
+   2. Body algemene stijl
+========================== */
+body {
+  margin: 0;
+  font-family: Courier, Arial, sans-serif;
+  background-color: #f5f5f5;
+  position: relative; /* nodig voor absolute nav-logo */
+  min-height: 100vh;
+}
+
+body.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo a {
+  color: black;
+  text-decoration: none;
+}
+
+/* ==========================
+   3. Navigatie rechtsboven
+========================== */
+nav {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+/* ==========================
+   4. Logo styling
+========================== */
+
+/* logo in het midden voor startpagina */
+body:not(.subpage) .logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'MijnLogoFont', sans-serif;
+  font-size: 120px;
+  color:black;
+  text-decoration: none; 
+  margin: 0;
+}
+
+/* logo linksboven voor subpagina's (projects, about) */
+body.subpage .logo {
+  position: fixed;
+  top: 20px;
+  left: 40px;
+  transform: none;
+  font-family: 'MijnLogoFont', sans-serif;
+  font-size: 60px;
+  color:black;
+  text-decoration: none; 
+  margin: 0;
+}
+
+/* ==========================
+   5. Extra content styling
+========================== */
+main {
+  padding: 100px 40px 40px 40px; /* ruimte onder logo/nav */
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-decoration: none; 
+  color: black;
+  font-family: 'MijnLogoFont', sans-serif;
+  text-align: center;
+}
+
+h3 {
+  font-size: 15px;
+  margin-bottom: 20px;
+  text-decoration: none; 
+  color: black;
+  font-family: 'MijnLogoFont', sans-serif;
+}
+
+
+li {
+  text-decoration: none; 
+  color: rgb(0, 0, 0);
+  font-family: 'MijnLogoFont', sans-serif;
+}
+
+.project-item {
+  margin-bottom: 30px;
+}
+
+.project-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Achtergrond voor de hele startpagina */
+body:not(.subpage) {
+  background-image: url('../media/achtergrond.jpg'); /* pad naar je afbeelding */
+  background-size: cover;       /* vult altijd het hele scherm */
+  background-position: center;  /* centreren van de afbeelding */
+  background-repeat: no-repeat; /* herhaalt de afbeelding niet */
+  height: 100vh;                /* volledige schermhoogte */
+  margin: 0;                     /* verwijdert standaardmarges */
+}
+
+/* container */
+.project-link {
+  position: relative;      /* nodig voor absolute positioning */
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* afbeelding */
+.project-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* tekst op afbeelding */
+.project-link h3 {
+  position: absolute;      /* zet tekst bovenop */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* perfect centreren */
+
+  color: white;
+  font-size: 50px;
+  text-align: center;
+
+  margin: 0;
+}
+
+.project-link h3 {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.project-link:hover h3 {
+  opacity: 1;
+}
+
+.about-container {
+  display: flex;            
+  align-items: center;  /* uitlijnen in het midden */
+  width: 100%;              
+  height: 100vh;             /* verwijder 100vh, tenzij je hele schermhoogte wilt */
+}
+
+.text, .image {
+  width: 50%;               
+  display: flex;
+  flex-direction: column;   /* stapelt elementen verticaal (voor h2/h4 + img) */
+  align-items: flex-start;  /* links uitlijnen binnen kolom */
+  box-sizing: border-box;   
+  padding: 20px;            
+}
+
+.image h4 {
+  margin-bottom: 20px;      /* ruimte tussen titel/subtitel en afbeelding */
+}
+
+.image img {
+  width: 100%;              
+  height: auto;             
+  object-fit: contain;      
+}
+
+/* rij met 3 afbeeldingen */
+.image-row {
+  display: flex;
+  justify-content: space-between; /* verdeelt de 3 afbeeldingen gelijk */
+  gap: 20px;                      /* optionele ruimte tussen afbeeldingen */
+  margin-top: 40px;               /* ruimte onder de about-container */
+  align-items: center;
+}
+
+.image-item {
+  flex: 1;                        /* elke afbeelding neemt evenveel ruimte */
+}
+
+.image-item img {
+  width: 100%;                     /* afbeelding vult container */
+  height: auto;
+  display: block;
+  object-fit: cover;               /* voorkomt vervorming */
+  /* border-radius: 8px;    */           /* optioneel: afgeronde hoeken */
+}
+
+/* Footer onderaan de pagina */
+.site-footer {
+  text-align: center;           /* centreren van tekst */
+  padding: 20px;                /* ruimte rondom */
+  /*background-color: #f5f5f5;    /* zelfde als body voor naadloze look */
+  font-size: 16px;
+  position: static;           /* of fixed als je altijd onderaan scherm wilt */
+  bottom: 0;
+  width: 100%;
+}
+
+/* Link styling */
+.site-footer a {
+  color: #000;                  /* zwarte link */
+  text-decoration: none;        /* geen onderstreping */
+  font-weight: bold;
+  font-family: 'MijnLogoFont', sans-serif;
+}
+
+.site-footer h5 {
+  color: #000;                  /* zwlorte link */
+  font-style: italic;
+  font-size: 10px;
+
+}
+
+
+.site-footer a:hover {
+  text-decoration: underline;   /* onderstreping bij hover */
+}
+
+footer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 16px;
+}
+
+.about-container a {
+  color: #000;                  /* zwarte link */
+  text-decoration: none;        /* geen onderstreping */
+  font-weight: bold;             /* verwijder 100vh, tenzij je hele schermhoogte wilt */
+}
+
+.about-container a:hover {
+  text-decoration: underline;   /* onderstreping bij hover */
+}
+
+/* =======================
+   LIGHTBOX ACHTERGROND
+======================= */
+
+.lightbox {
+  display: none; /* Standaard verborgen */
+  position: fixed; /* Blijft vast op het scherm */
+  z-index: 999; /* Zorgt dat het boven alles ligt */
+
+  top: 0;
+  left: 0;
+  width: 100%; /* Volledige breedte */
+  height: 100%; /* Volledige hoogte */
+
+  background-color: rgba(0,0,0,0.9); /* Donkere transparante achtergrond */
+
+  justify-content: center; /* Centreert horizontaal */
+  align-items: center; /* Centreert verticaal */
+}
+
+
+/* =======================
+   AFBEELDING IN LIGHTBOX
+======================= */
+
+.lightbox-content {
+  display: block;
+  max-width: 80vw; /* Niet breder dan 80% van scherm */
+  max-height: 80vh; /* Niet hoger dan 80% van scherm */
+  object-fit: contain; /* zorgt dat de hele afbeelding zichtbaar blijft */
+}
+
+
+/* =======================
+   ACTIEVE LIGHTBOX
+======================= */
+
+.lightbox.active {
+  display: flex; /* Maakt de lightbox zichtbaar en gebruikt flexbox */
+}
+
+
+/* =======================
+   CONTAINER (IMAGE + TEKST)
+======================= */
+
+.lightbox-inner {
+  display: flex;
+  flex-direction: column; /* Zet afbeelding en tekst onder elkaar */
+  align-items: center; /* Centreert alles */
+}
+
+
+/* =======================
+   CAPTION (TEKST ONDER FOTO)
+======================= */
+
+#lightbox-caption {
+  color: white; /* Witte tekst */
+  margin-top: 20px; /* Ruimte boven tekst */
+  font-size: 16px;
+  text-align: center;
+  max-width: 80%; /* Zelfde breedte als afbeelding */
+}
+
+
+/* =======================
+   SLUITKNOP (X)
+======================= */
+
+.close {
+  position: absolute; /* Los van de flow */
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer; /* Handje bij hover */
+}
+
+
+/* =======================
+   PIJLTJES (NAVIGATIE)
+======================= */
+
+.controls span {
+  position: absolute;
+  top: 50%; /* Verticaal midden */
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+
+/* Linker pijltje */
+#prev {
+  left: 20px;
+}
+
+/* Rechter pijltje */
+#next {
+  right: 20px;
+}
+
+/* Afbeeldingen die klikbaar zijn */
+.gallery-img {
+  cursor: pointer;
+}
+
+.gallery-img {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03); /* klein zoom effect */
+}
+
+.landing-links {
+  margin-top: 100px;
+  flex-direction: column;
+  display: flex;
+  gap: 50px;
+  font-size: 32px;
+}
+    
+.landing-links a {
+  text-decoration: none;
+  color: black;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.landing-links a:hover {
+  transform: scale(1.1);
+  color: #555;
+}
