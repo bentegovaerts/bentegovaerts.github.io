@@ -19,25 +19,170 @@
   <!-- Logo linksboven -->
   <h1 class="logo"><a href="index.html">BENTE</a></h1>
   <main>
-    <h2>Selfportrait</h2>
+    <h2>Self-portrait</h2>
     <div class="about-container">
      <div class="text">
-      <p>This is my selfportrait.</p>
-      <p>It is inspired by the three times when the pictures where took.</p>
+      <p>This is my <strong>self-portrait</strong>(2025).</p>
+      <p>Three times a day, I took a photo: right after waking up, after taking a shower, and just before leaving. The work is based on the position of the sun at the time each photo was taken.</p>
      </div>
 
-     <div class="image">
-      <img src="media/selfportrait.jpg" alt="Image selfportrait">
+
+
+     <div class="image-item">
+      <img src="media/selfportrait.jpg" class="gallery-img" 
+           data-caption="Selfportrait, 2025, paper, plastic, thread" 
+           alt="Image Selfportrait">
       </div>
     </div>
 
+    <div class="image-row">
+      <div class="image-item">
+      <img src="media/proces-selfportrait.jpg" class="gallery-img"
+           data-caption="process" 
+           alt="Image process Selfportrait">
+     </div>
+     <div class="image-item">
+      <img src="media/process selfportrait1.jpg" class="gallery-img" 
+           data-caption="process" 
+           alt="Image process Selfportrait">
+     </div>
+     <div class="image-item">
+      <img src="media/proces-selfportrait2.jpg" class="gallery-img"
+           data-caption="page in my Logbook" 
+           alt="Image process Selfportrait">
+     </div>
+     <div class="image-item">
+      <img src="media/Proces-Selfportrait3.jpg" class="gallery-img"
+           data-caption="page in my Logbook" 
+           alt="Image process Selfportrait">
+     </div>
+    </div>
+
+
   </main>
-  <footer class="site-footer">
-   <p><a href="https://www.instagram.com/bente.sieraad" target="_blank" rel="noopener noreferrer">Follow me on Instagram</a></p>
-   <h5>© Bente Govaerts</h5>
-  </footer>
-  
-  
+
+<footer class="site-footer">
+  <!-- Link naar je Instagram -->
+  <p>
+    <a href="https://www.instagram.com/bente.sieraad" target="_blank" rel="noopener noreferrer">
+      Follow me on Instagram
+    </a>
+  </p>
+
+  <!-- Copyright tekst -->
+  <h5>© Bente Govaerts 2026</h5>
+</footer>
+
+<!-- LIGHTBOX (popup voor afbeeldingen) -->
+<div id="lightbox" class="lightbox">
+
+  <!-- Sluitknop (X) -->
+  <span class="close">&times;</span>
+
+  <!-- Container voor afbeelding + caption -->
+  <div class="lightbox-inner">
+    <!-- Grote afbeelding -->
+    <img class="lightbox-content" id="lightbox-img">
+
+    <!-- Tekst onder afbeelding -->
+    <p id="lightbox-caption"></p>
+  </div>
+
+  <!-- Navigatie knoppen -->
+  <div class="controls">
+    <!-- Vorige afbeelding -->
+    <span id="prev">&#10094;</span>
+
+    <!-- Volgende afbeelding -->
+    <span id="next">&#10095;</span>
+  </div>
+</div>
+
+<script>
+// Selecteert alle afbeeldingen met class "gallery-img"
+const images = document.querySelectorAll(".gallery-img");
+
+// Selecteert de lightbox container
+const lightbox = document.getElementById("lightbox");
+
+// Selecteert de grote afbeelding in de lightbox
+const lightboxImg = document.getElementById("lightbox-img");
+
+// Selecteert de caption (tekst onder afbeelding)
+const caption = document.getElementById("lightbox-caption");
+
+// Houdt bij welke afbeelding momenteel open is
+let currentIndex = 0;
+
+
+// =======================
+// OPEN LIGHTBOX
+// =======================
+
+// Voor elke afbeelding:
+images.forEach((img, index) => {
+  img.addEventListener("click", () => {
+
+    // Toon de lightbox
+    lightbox.style.display = "flex";
+
+    // Zet de juiste afbeelding in de lightbox
+    lightboxImg.src = img.src;
+
+    // Zet de caption (tekst uit data-caption attribuut)
+    caption.textContent = img.dataset.caption;
+
+    // Onthoud welke afbeelding dit is
+    currentIndex = index;
+  });
+});
+
+
+// =======================
+// SLUIT LIGHTBOX
+// =======================
+
+// Klik op X om te sluiten
+document.querySelector(".close").onclick = () => {
+  lightbox.style.display = "none";
+};
+
+
+// =======================
+// VOLGENDE AFBEELDING
+// =======================
+
+document.getElementById("next").onclick = () => {
+
+  // Ga naar volgende afbeelding (en terug naar begin als je op het einde zit)
+  currentIndex = (currentIndex + 1) % images.length;
+
+  // Update afbeelding
+  lightboxImg.src = images[currentIndex].src;
+
+  // Update caption
+  caption.textContent = images[currentIndex].dataset.caption;
+};
+
+
+// =======================
+// VORIGE AFBEELDING
+// =======================
+
+document.getElementById("prev").onclick = () => {
+
+  // Ga naar vorige afbeelding (en spring naar einde als je op begin zit)
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+  // Update afbeelding
+  lightboxImg.src = images[currentIndex].src;
+
+  // Update caption
+  caption.textContent = images[currentIndex].dataset.caption;
+};
+
+</script>
 
 </body>
+
 </html>
